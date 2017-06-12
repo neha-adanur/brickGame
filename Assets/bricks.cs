@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class bricks : MonoBehaviour {
 
-	// Use this for initialization
+	public UIManager ui;
 	void Start () {
-		
+		ui = GameObject.FindWithTag ("ui").GetComponent<UIManager>(); //access the UIManager script from the game object tagged with tag "ui"
 	}
 	
 	// Update is called once per frame
@@ -15,7 +15,9 @@ public class bricks : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D c)
 	{
-		if (c.gameObject.tag =="ball")
+		if (c.gameObject.tag == "ball") {
+			ui.inc_score ();
 			Destroy (gameObject);
+		}
 	}
 }
